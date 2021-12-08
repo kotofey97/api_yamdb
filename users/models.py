@@ -1,13 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from users.managers import UserManager
-
-
-class Roles(models.TextChoices):
-    USER = 'user'
-    MODERATOR = 'moderator'
-    ADMIN = 'admin'
-
+from .managers import Roles
 
 class User(AbstractUser):
     
@@ -40,11 +34,13 @@ class User(AbstractUser):
     )
     role = models.CharField(
         verbose_name='Роль пользователя',
+        max_length=30,
         default=Roles.USER,
         choices=Roles.choices,
     )
 
-    REQUIRED_FIELDS = ('username', 'email', 'password')
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ('username',)
     objects = UserManager()
 
     @property

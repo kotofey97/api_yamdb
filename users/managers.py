@@ -1,6 +1,11 @@
 from django.contrib.auth.base_user import BaseUserManager
-from .models import Roles
+from django.db import models
 
+
+class Roles(models.TextChoices):
+    USER = 'user'
+    MODERATOR = 'moderator'
+    ADMIN = 'admin'
 
 RESERVED_NAME = 'me'
 
