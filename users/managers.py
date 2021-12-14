@@ -2,26 +2,25 @@ from django.contrib.auth.base_user import BaseUserManager
 from django.db import models
 
 
+RESERVED_NAME = 'me'
+
 class Roles(models.TextChoices):
     USER = 'user'
     MODERATOR = 'moderator'
     ADMIN = 'admin'
 
-RESERVED_NAME = 'me'
 
 class UserManager(BaseUserManager):
-    def create_user(self, username, email, password, **extra_fields):
+    def create_user(self, email, password, **extra_fields):
         """
         Сохраняет пользователя только с емаил, ником, паролем
         """
-        if not email:
-            raise ValueError('Поле email обязательное')
-        if username == RESERVED_NAME:
-            raise ValueError('Данное имя нельзя использовать')
-        email = self.normalize_email(email)
-        user = self.model(email=email, username=username, **extra_fields)
-        user.set_password(password)
-        user.save()
+        if not email: 
+            raise ValueError('Неоходимо указать email') 
+        email = self.normalize_email(email) 
+        user = self.model(email=email, **extra_fields) 
+        user.set_password(password) 
+        user.save() 
         return user
 
     def create_superuser(self, email, password, **extra_fields):
