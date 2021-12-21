@@ -1,4 +1,3 @@
-from django.db import models
 from django_filters.filters import CharFilter
 from django_filters.rest_framework import FilterSet
 

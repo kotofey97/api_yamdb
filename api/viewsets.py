@@ -1,5 +1,7 @@
 from rest_framework import filters, mixins, viewsets
+
 from .permissions import IsAdminOrReadOnly
+
 
 class ListCreateDestroyViewSet(
     mixins.ListModelMixin,
@@ -10,5 +12,5 @@ class ListCreateDestroyViewSet(
 
     permission_class = [IsAdminOrReadOnly]
     lookup_field = 'slug'
-    filter_backends = [filters.SearchFilter,]
+    filter_backends = [filters.SearchFilter, ]
     search_fields = ['=name']

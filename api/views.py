@@ -1,6 +1,5 @@
-from rest_framework import  viewsets
+from rest_framework import viewsets
 from rest_framework.generics import get_object_or_404
-from rest_framework.serializers import Serializer
 
 from api.filters import TitleFilter
 from api.permissions import IsAdminOrReadOnly
@@ -34,7 +33,7 @@ class TitleViewSet(viewsets.ModelViewSet):
         genre = Genre.objects.filter(
             slug_in=self.request.data.getlist('genre')
         )
-        serializer.save(category=category,genre=genre)
+        serializer.save(category=category, genre=genre)
 
     def perform_update(self, serializer):
         serializer.save()
@@ -44,6 +43,4 @@ class TitleViewSet(viewsets.ModelViewSet):
         genre = Genre.objects.filter(
             slug_in=self.request.data.getlist('genre')
         )
-        serializer.save(category=category,genre=genre)
-
-
+        serializer.save(category=category, genre=genre)
