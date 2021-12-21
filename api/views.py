@@ -2,7 +2,7 @@ from rest_framework import viewsets
 from rest_framework.generics import get_object_or_404
 
 from api.filters import TitleFilter
-from api.permissions import IsAdminOrReadOnly
+from users.permissions import IsAdminOrReadOnly
 
 from .models import Category, Genre, Title
 from .serializers import CategorySerializer, GenreSerializer, TitleSerializer

@@ -1,6 +1,6 @@
 from rest_framework import filters, mixins, viewsets
 
-from .permissions import IsAdminOrReadOnly
+from users.permissions import IsAdminOrReadOnly
 
 
 class ListCreateDestroyViewSet(
