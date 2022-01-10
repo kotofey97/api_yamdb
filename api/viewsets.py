@@ -10,7 +10,7 @@ class ListCreateDestroyViewSet(
     viewsets.GenericViewSet,
 ):
 
-    permission_class = [IsAdminOrReadOnly]
+    permission_classes = [IsAdminOrReadOnly]
     lookup_field = 'slug'
     filter_backends = [filters.SearchFilter, ]
     search_fields = ['=name']
