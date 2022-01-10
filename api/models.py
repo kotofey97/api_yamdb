@@ -10,12 +10,12 @@ User = get_user_model()
 class Genre(models.Model):
     name = models.CharField(
         max_length=50,
-        verbose_name='Название жанра'
+        verbose_name='Название жанра',
     )
     slug = models.SlugField(
-        max_length=50,
         unique=True,
-        verbose_name='часть URL жанра'
+        max_length=20,
+        verbose_name='Часть URL жанра',
     )
 
     class Meta:
@@ -30,12 +30,12 @@ class Genre(models.Model):
 class Category(models.Model):
     name = models.CharField(
         max_length=50,
-        verbose_name='Название категории'
+        verbose_name='Название категории',
     )
     slug = models.SlugField(
-        max_length=50,
         unique=True,
-        verbose_name='часть URL категории'
+        max_length=20,
+        verbose_name='Часть URL категории',
     )
 
     class Meta:
@@ -49,8 +49,8 @@ class Category(models.Model):
 
 class Title(models.Model):
     name = models.CharField(
-        max_length=50,
-        verbose_name='Название произведения'
+        max_length=200,
+        verbose_name='Название произведения',
     )
     description = models.TextField(
         blank=True,

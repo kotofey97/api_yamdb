@@ -9,13 +9,13 @@ User = get_user_model()
 class GenreSerializer(serializers.ModelSerializer):
     class Meta:
         model = Genre
-        fields = ('name', 'slug')
+        exclude = ['id']
 
 
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        fields = ('name', 'slug')
+        exclude = ['id']
 
 
 class TitleSerializer(serializers.ModelSerializer):
@@ -24,8 +24,8 @@ class TitleSerializer(serializers.ModelSerializer):
     rating = serializers.FloatField(read_only=True)
 
     class Meta:
-        model = Title
         fields = '__all__'
+        model = Title
         read_only_fields = ['id', 'rating']
 
 
@@ -50,8 +50,8 @@ class ReviewSerializer(serializers.ModelSerializer):
         return data
 
     class Meta:
+        fields = '__all__'
         model = Review
-        fields = ('id', 'text', 'author', 'score', 'pub_date')
 
 
 class CommentSerializer(serializers.ModelSerializer):
