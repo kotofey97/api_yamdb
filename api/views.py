@@ -31,7 +31,7 @@ class TitleViewSet(viewsets.ModelViewSet):
             Category, slug=self.request.data.get('category')
         )
         genre = Genre.objects.filter(
-            slug_in=self.request.data.getlist('genre')
+            slug__in=self.request.data.getlist('genre')
         )
         serializer.save(category=category, genre=genre)
 
@@ -41,6 +41,6 @@ class TitleViewSet(viewsets.ModelViewSet):
             Category, slug=self.request.data.get('category')
         )
         genre = Genre.objects.filter(
-            slug_in=self.request.data.getlist('genre')
+            slug__in=self.request.data.getlist('genre')
         )
         serializer.save(category=category, genre=genre)
