@@ -1,19 +1,21 @@
-from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django.db import models
+
 from users.managers import UserManager
+
 from .managers import Roles
 
+
 class User(AbstractUser):
-    
     username = models.CharField(
         verbose_name='Никнейм',
-        blank=False, 
+        blank=False,
         unique=True,
         max_length=30,
     )
     email = models.EmailField(
         verbose_name='Почта',
-        blank=False, 
+        blank=False,
         unique=True,
         max_length=254,
     )
@@ -51,10 +53,10 @@ class User(AbstractUser):
     def is_moderator(self):
         return self.role == Roles.MODERATOR or self.is_superuser
 
-    class Meta(AbstractUser.Meta): 
-        ordering = ['username'] 
-        verbose_name = 'Пользователь' 
-        verbose_name_plural = 'Пользователи' 
- 
-    def __str__(self): 
-        return self.username 
+    class Meta(AbstractUser.Meta):
+        ordering = ['username']
+        verbose_name = 'Пользователь'
+        verbose_name_plural = 'Пользователи'
+
+    def __str__(self):
+        return self.username
