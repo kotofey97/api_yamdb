@@ -1,8 +1,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model
-from django.core.validators import MinValueValidator, MaxValueValidator
 
-from api.validators import year_validator
+from api.validators import year_validator, validate_score
 
 
 User = get_user_model()
@@ -85,12 +84,9 @@ class Title(models.Model):
 
 class Review(models.Model):
     text = models.TextField()
-    score = models.IntegerField(
+    score = models.PositiveIntegerField(
         blank=True,
-        validators=[
-            MinValueValidator(1, message='Слишком низкая оценка'),
-            MaxValueValidator(10, message='Слишком высокая оценка'),
-        ]
+        validators=[validate_score]
     )
     title = models.ForeignKey(
         Title,
@@ -114,6 +110,9 @@ class Review(models.Model):
         ordering = ('-pub_date',)
         verbose_name = 'Отзыв'
         verbose_name_plural = 'Отзывы'
+
+    def __str__(self):
+        return self.text
 
 
 class Comment(models.Model):
@@ -140,3 +139,6 @@ class Comment(models.Model):
         ordering = ('-pub_date',)
         verbose_name = 'Комментарий'
         verbose_name_plural = 'Комментарии'
+
+    def __str__(self):
+        return self.text

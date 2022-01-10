@@ -8,3 +8,8 @@ def year_validator(value):
             ('%(value)s is not a correcrt year!'),
             params={'value': value},
         )
+
+
+def validate_score(score):
+    if score < 1 or score > 10:
+        raise ValidationError('Оценка должна быть в диапазоне от 1 до 10')
